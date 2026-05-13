@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+	--bg-color: #121212;
+	--card-bg: #1e1e1e;
+	--text-primary: #e0e0e0;
+	--text-secondary: #a0a0a0;
+	--accent-color: #39ff14; /* Neon green */
+	--danger-color: #ff3333;
+	--navbar-bg: #1a1a1a;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--text-primary);
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+.digital-font {
+	font-family: 'Orbitron', sans-serif;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 2rem;
+	border: none;
+	border-radius: 50px;
+	font-size: 1.25rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.1s;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.btn:active {
+	transform: scale(0.98);
+}
+
+.btn-primary {
+	background-color: var(--accent-color);
+	color: #000;
+}
+
+.btn-danger {
+	background-color: var(--danger-color);
+	color: #fff;
+}
+
+.card {
+	background-color: var(--card-bg);
+	border-radius: 16px;
+	padding: 1.5rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stat-value {
+	color: var(--accent-color);
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+nav {
+	background-color: var(--navbar-bg);
+	display: flex;
+	justify-content: space-around;
+	padding: 1rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	border-top: 1px solid #333;
+}
+
+nav a {
+	color: var(--text-secondary);
+	text-decoration: none;
+	font-size: 0.9rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+nav a.active {
+	color: var(--accent-color);
+}
+
+.nav-icon {
+	font-size: 1.5rem;
+	margin-bottom: 0.25rem;
+}
+
+/* Page content area needs padding to not be hidden by fixed nav */
+main {
+	padding-bottom: 80px;
+	min-height: 100vh;
+}
