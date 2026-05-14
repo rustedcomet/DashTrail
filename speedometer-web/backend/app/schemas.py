@@ -1,6 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_serializer
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
+
+def serialize_utc_datetime(value: Optional[datetime]) -> Optional[str]:
+    if value is None:
+        return None
+    if value.tzinfo is None:
+        value = value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 class RoutePointCreate(BaseModel):
     lat: Optional[float] = None
@@ -27,6 +34,10 @@ class RoutePoint(BaseModel):
     accuracy_m: Optional[float] = None
     sequence: int
     model_config = ConfigDict(from_attributes=True)
+
+    @field_serializer("timestamp", when_used="json")
+    def serialize_timestamp(self, value: datetime) -> str:
+        return serialize_utc_datetime(value) or ""
 
 class TripPointsCreate(BaseModel):
     points: List[RoutePointCreate] = Field(default_factory=list)
@@ -74,6 +85,10 @@ class Trip(BaseModel):
     end_address: Optional[str] = None
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
+
+    @field_serializer("started_at", "ended_at", "created_at", when_used="json")
+    def serialize_datetimes(self, value: Optional[datetime]) -> Optional[str]:
+        return serialize_utc_datetime(value)
 
 class TripWithPoints(Trip):
     route_points: List[RoutePoint] = []

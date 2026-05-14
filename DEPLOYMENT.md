@@ -12,6 +12,8 @@ This guide deploys DashTrail on a typical Linux server with Docker and Docker Co
 
 GPS access requires HTTPS in production. Plain HTTP only works reliably for localhost development.
 
+DashTrail displays trip times in Panama time, `America/Panama` (GMT-5), regardless of the VM or container timezone. Trip timestamps are stored as UTC internally.
+
 ## Files
 
 Deploy from the `speedometer-web/` directory:

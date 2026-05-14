@@ -68,6 +68,7 @@ The default provider is Nominatim/OpenStreetMap. Use it lightly, keep caching en
 
 - GPS requires HTTPS in production browser contexts.
 - A domain and SSL/TLS certificate are required for phone GPS access outside localhost.
+- Trip times are displayed in Panama time, `America/Panama` (GMT-5), while timestamps are stored as UTC internally.
 - Browser/PWA tracking is not as reliable in the background as a native mobile app.
 - For best tracking accuracy, keep DashTrail open while recording a trip.
 - Some phones may pause GPS when the screen is locked, the PWA is backgrounded, or battery saver is enabled.

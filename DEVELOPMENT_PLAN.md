@@ -1442,3 +1442,15 @@ Operational notes:
 - Default provider is Nominatim.
 - The public Nominatim service should be used lightly, with caching and a custom User-Agent.
 - For heavier use or stricter address quality, switch to a paid provider or a self-hosted geocoder later.
+
+---
+
+## 39. Timezone Handling
+
+Implemented on 2026-05-13 after field testing showed trip times were offset.
+
+- Trip timestamps are stored internally as UTC.
+- API responses serialize stored timestamps with a UTC `Z` suffix.
+- The frontend displays trip history and report times in `America/Panama` (GMT-5).
+- Daily, weekly, and monthly stats use Panama local day boundaries instead of VM/container timezone boundaries.
+- The UI no longer depends on the VM timezone or Docker container timezone for trip display.

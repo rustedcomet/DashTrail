@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fetchTrips } from '$lib/api';
+	import { formatDate, formatTime } from '$lib/time';
 
 	let trips: any[] = [];
 	let loading = true;
@@ -36,8 +37,8 @@
 			{#each trips as trip}
 				<a href="/trips/{trip.id}" class="card trip-card">
 					<div class="trip-date">
-						{new Date(trip.started_at).toLocaleDateString()}
-						{new Date(trip.started_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+						{formatDate(trip.started_at)}
+						{formatTime(trip.started_at)}
 					</div>
 					<div class="trip-stats">
 						<div>

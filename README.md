@@ -62,3 +62,5 @@ The Vite dev server proxies `/api` to `http://127.0.0.1:8000`.
 ## Notes
 
 Browser/PWA GPS tracking can keep the screen awake on supported browsers while a trip is active, but reliable background tracking while the screen is locked is a mobile OS limitation.
+
+Trip times are displayed in Panama time, `America/Panama` (GMT-5), while timestamps are stored as UTC internally.

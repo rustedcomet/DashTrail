@@ -4,6 +4,7 @@
 	import { fetchTrip, deleteTrip } from '$lib/api';
 	import { goto } from '$app/navigation';
 	import Map from '$lib/Map.svelte';
+	import { formatDate, formatTime } from '$lib/time';
 
 	let trip: any = null;
 	let loading = true;
@@ -66,9 +67,9 @@
 		<div class="card summary-card">
 			<h2>Trip Summary</h2>
 			<div class="trip-meta">
-				<p><strong>Date:</strong> {new Date(trip.started_at).toLocaleDateString()}</p>
-				<p><strong>Start:</strong> {new Date(trip.started_at).toLocaleTimeString()}</p>
-				<p><strong>End:</strong> {trip.ended_at ? new Date(trip.ended_at).toLocaleTimeString() : 'In progress'}</p>
+				<p><strong>Date:</strong> {formatDate(trip.started_at)}</p>
+				<p><strong>Start:</strong> {formatTime(trip.started_at)}</p>
+				<p><strong>End:</strong> {trip.ended_at ? formatTime(trip.ended_at) : 'In progress'}</p>
 				<p><strong>Start location:</strong> {formatLocation(trip.start_address, trip.start_lat, trip.start_lng)}</p>
 				<p><strong>Stop location:</strong> {formatLocation(trip.end_address, trip.end_lat, trip.end_lng)}</p>
 			</div>
